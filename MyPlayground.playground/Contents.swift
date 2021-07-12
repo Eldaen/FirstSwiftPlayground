@@ -39,17 +39,16 @@ for (item, value) in array.enumerated() {
 
 var numbers: Set = [1, 5, 12, 13, 17, 6]
 
-for item in numbers.sorted() {
-    print(item)
-}
+//for item in numbers.sorted() {
+//    print(item)
+//}
 
 let oddNumbers: Set = [1, 3, 5, 7, 9]
 let evenNumbers: Set = [0, 2, 4, 6, 8]
 let primeNumbers: Set = [2, 3, 5, 7]
 
-oddNumbers.union(evenNumbers).sorted()
-oddNumbers.subtracting(primeNumbers).sorted()
-oddNumbers.intersection(evenNumbers)
+oddNumbers.union(evenNumbers)
+oddNumbers.subtracting(evenNumbers)
 
 func firstFunc (text: String) {
     print(text)
