@@ -48,7 +48,8 @@ let evenNumbers: Set = [0, 2, 4, 6, 8]
 let primeNumbers: Set = [2, 3, 5, 7]
 
 oddNumbers.union(evenNumbers)
-oddNumbers.subtracting(evenNumbers)
+oddNumbers.subtracting(primeNumbers).sorted()
+oddNumbers.intersection(primeNumbers).sorted()
 
 func firstFunc (text: String) {
     print(text)
@@ -103,3 +104,52 @@ func square2 (_ numbers: Int...) {
 }
 
 square2(1, 3, 5, 7, 10)
+
+// Клоужеры (видимо замыкания)
+
+let printText = {
+    print("Some text in closure")
+}
+
+printText()
+
+let greetClosure = { (name: String) -> String in
+    return "Hello, my dear \(name)"
+}
+
+// В замыканиях не используются имена параметров при вызове
+print(greetClosure("Vasia"))
+
+let noParamsClosure = {() -> Bool in
+    return true
+}
+
+// Передаём замыкание в функцию
+
+func travel(action: () -> Void) {
+    print("I'm getting ready to go")
+    action()
+    print("I arrived")
+}
+
+travel(action: printText)
+
+// Trailing closure, по идее, можно вот так передавать, если последний параметр функции - замыкание, надо понять зачем это так
+travel() {
+    print("Trailing clouse text")
+}
+
+
+func animate(duration: Double, animations: () -> Void) {
+    print("Starting a \(duration) seconds animation")
+    animations()
+}
+
+animate(duration: 3.22, animations: {
+    print("Image")
+})
+
+// второй вариант с Trailing closure syntax, типа красивее. Мне пока кажется, что может сложнее читаться
+animate(duration: 3.22) {
+    print("Image")
+}
