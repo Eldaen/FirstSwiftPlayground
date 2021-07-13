@@ -149,7 +149,79 @@ animate(duration: 3.22, animations: {
     print("Image")
 })
 
-// второй вариант с Trailing closure syntax, типа красивее. Мне пока кажется, что может сложнее читаться
+// Второй вариант с Trailing closure syntax, типа красивее. Мне пока кажется, что может сложнее читаться
 animate(duration: 3.22) {
     print("Image")
 }
+
+func travel2(action: (String) -> Void) {
+    print("I'm getting ready to go")
+    action("London")
+    print("So I'm here")
+}
+
+travel2 { (place: String) in
+    print("I'm going to \(place) in my car")
+}
+
+let changeSpeed = { (speed: Int) in
+    print("Changing speed to \(speed)kph")
+}
+
+func buildCar (name: String, engine: (Int) -> Void) {
+    //some code
+}
+
+func travel3 (action: (String) -> String) {
+    print("I'm getting ready to go")
+    let description = action("London")
+    print(description)
+    print("So I'm here")
+}
+
+travel3 { (place: String) -> String in
+    return "I'm driving my car to \(place)"
+}
+
+// Вот так можно прикольно сокращать, называется Short handed paramters name
+travel3 { place in
+    return "I'm driving my car to \(place)"
+}
+
+func travel4 (action: (String, Int) -> String) {
+    print("I'm getting ready to go")
+    let description = action("London", 60)
+    print(description)
+    print("So I'm here")
+}
+
+travel4 {
+    return "I'm driving my car to \($0) at \($1) kph speed"
+}
+
+// Учусь возвращать closure из функции, функция ничего не принимает, но вощвращает closure
+func travel5 () -> (String) -> Void {
+    return {
+        print("I'm going to \($0)")
+    }
+}
+
+let result = travel5()
+
+result("London")
+
+// Захват значений, TODO: почитать ещё, на всякий
+
+func travelWithCounter () -> (String) -> Void {
+    var counter = 1
+    return {
+        print("\(counter). I'm going to \($0)")
+        counter += 1
+    }
+}
+
+let result2 = travelWithCounter()
+
+result2("London")
+result2("London")
+result2("London")
