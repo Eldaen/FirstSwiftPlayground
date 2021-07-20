@@ -3,5 +3,7 @@
     <pages>
         <page name='Enumerations'/>
         <page name='Classes'/>
+        <page name='FirstSwift'/>
+        <page name='Structers'/>
     </pages>
 </playground>
