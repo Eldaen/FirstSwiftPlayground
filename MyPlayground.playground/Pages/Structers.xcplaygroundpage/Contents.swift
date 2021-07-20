@@ -75,3 +75,53 @@ print(string.uppercased())
 print(string.sorted())
 
 
+class Dog {
+    
+    var age: Int {
+        didSet { // не даст поставить возраст больше maxAge
+            if age > Dog.maxAge { // Dog.maxAge потому что static
+                age = oldValue
+            }
+        }
+    }
+    var name: String
+    static var maxAge = 30 // static значит, что это значения является не св-вом экземпляра, а класса в целом. Со структурой так же.
+    static var howManyDogs = 0
+    
+    init(age: Int, name: String) {
+        self.age = age
+        self.name = name
+        Dog.howManyDogs += 1
+    }
+}
+
+struct Cat {
+    
+    var age: Int {
+        didSet {
+            if age > Cat.maxAge {
+                age = oldValue
+            }
+        }
+    }
+    
+    var name: String
+    static var maxAge = 30
+    static var howManyCats = 0
+    
+    init(age: Int, name: String) { // в структуре тоже можно сделать свой инициализатор, если надо что-то делать вроде счётчика как в примере
+        self.age = age
+        self.name = name
+        Cat.howManyCats += 1
+    }
+}
+
+var dog = Dog(age: 5, name: "Zjhuchka")
+var cat = Cat(age: 3, name: "Mishka")
+
+Dog.howManyDogs
+
+var dog2 = Dog(age: 5, name: "Schuchka")
+var dog3 = Dog(age: 5, name: "Marat")
+
+Dog.howManyDogs // счётчик в классе, не в экземплярах класса ибо static, похоже немного на замыкания, но не оно.
