@@ -7,5 +7,6 @@
         <page name='Structers'/>
         <page name='Inheritance'/>
         <page name='Extensions'/>
+        <page name='Protocols'/>
     </pages>
 </playground>
