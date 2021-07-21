@@ -6,5 +6,6 @@
         <page name='FirstSwift'/>
         <page name='Structers'/>
         <page name='Inheritance'/>
+        <page name='Extensions'/>
     </pages>
 </playground>
